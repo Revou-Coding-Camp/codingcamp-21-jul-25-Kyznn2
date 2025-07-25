@@ -13,11 +13,21 @@ deleteAllBtn.addEventListener("click", deleteAllTodos);
 
 function addTodo(event) {
   event.preventDefault();
-  if (todoInput.value === "") return;
 
-  const todoDiv = createTodoElement(todoInput.value, dateInput.value);
+  const text = todoInput.value.trim();
+  const date = dateInput.value;
+  
+  console.log("input text", text);
+  console.log("input date", date);
+
+  if (todoInput.value === "" || dateInput.value === "") {
+    alert("please enter a task and date");
+    
+    return;
+  }
+  const todoDiv = createTodoElement(text,date);
   todoList.appendChild(todoDiv);
-  saveLocalTodo({ text: todoInput.value, date: dateInput.value });
+  saveLocalTodo({ text,date});
 
   todoInput.value = "";
   dateInput.value = "";
